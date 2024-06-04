@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mask {
+            position: relative;
+            width: fit-content;
+            margin: auto;
+        }
+
+        #center {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .left,
+        .right {
+            position: relative;
+        }
+
+        .left img,
+        .right img {
+            width: 200px;
+            /* 可以根据需要调整箭头大小 */
+            height: auto;
+        }
+
+        img {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mask">
+        <div id="center">
+            <a href="javascript:void(0)" v-show="index!=0" @click="pre" class="left">
+                <img src="leftarrow.jpg" alt="" />
+            </a>
+            <img :src="imgArr[index]" alt="">
+            <a href="javascript:void(0)" v-show="index<imgArr.length - 1" @click="next" class="right">
+                <img src="rightArrow.png" alt="" />
+            </a>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#mask",
+            data: {
+                imgArr: [
+                    "./first.jpg",
+                    "./second.jpg",
+                    "./third.jpg"
+                ],
+                index: 0
+            },
+            methods: {
+                pre: function () {
+                    if (this.index > 0) {
+                        this.index--;
+                    }
+                },
+                next: function () {
+                    if (this.index < 2) {
+                        this.index++;
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
